@@ -1,6 +1,6 @@
-import {cp, access, constants} from 'fs/promises';
-import {fileURLToPath} from 'url';
-import {dirname} from 'path';
+import { cp, access, constants } from 'fs/promises';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
 const isExistDirectory = async (path) => {
     return await access(path, constants.R_OK).then(() => true).catch(() => false);
@@ -11,8 +11,8 @@ const copy = async () => {
     const __dirname = dirname(fileName);
 
     try {
-        const pathFrom = __dirname + '/files';
-        const pathTo = __dirname + '/files_copy';
+        const pathFrom = join(__dirname, 'files');
+        const pathTo = join(__dirname, 'files_copy');
         const errorMessage = 'FS operation failed';
 
         const isExistsFrom = await isExistDirectory(pathFrom);
